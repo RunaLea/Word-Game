@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="WordGame.css">
 </head>
 <body>
-    <input type="text" id="Textbox">
-    <button onclick="enterWord()">Enter</button>
+    <input type="text" id="Textbox" onkeydown="enterCheck(event)">
+    <button onclick="enterWord()" id="enterButton">Enter</button>
 </body>
 </html>

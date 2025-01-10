@@ -4,3 +4,7 @@ Create an input textbox. Add an ID.
 2. Make a button that when clicked shows the typed word from the textbox in the console.
 Create a button. Add an onclick to a function enterWord(). Make an enterWord() function. 
 Make an Input variable. Log the input.
+
+3. When you press the enter button the button is pressed.
+Give the button an ID. Add onkeydown to the button to run an enterCheck() function. Make an enterCheck() function.
+Check if the key is Enter, if True -> run enterWord().
