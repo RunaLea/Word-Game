@@ -4,8 +4,9 @@ function enterWord(){
     console.log(wordInput);
 };
 function enterCheck(event){
+    // Checks if a key is pressed and if it's enter it will run enterWord().
     let key = event.key;
     if(key == "Enter"){
         enterWord();
     }
-}
+};
