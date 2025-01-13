@@ -12,3 +12,7 @@ Check if the key is Enter, if True -> run enterWord().
 4. Add boxes for the letters.
 Make divs for the boxes, give them an outline and a size.
 
+5. When entering a word, add it to the letter boxes.
+Create a displayRow() function. Add the letters of the word to an array. 
+Add the letters of the array to their respective letter boxes using inner.html.
+
