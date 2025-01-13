@@ -16,3 +16,11 @@ Make divs for the boxes, give them an outline and a size.
 Create a displayRow() function. Add the letters of the word to an array. 
 Add the letters of the array to their respective letter boxes using inner.html.
 
+6. When a word is too short or too long, it will show a message and the turn is repeated.
+Make a div for a text message.
+Create an if statement for the enterWord() function. 
+Make a wordLenCheck() function that checks if the word is too long or too short.
+If it returns true the displayRow() function will be triggered and the turn will count.
+If it returns false it will show a message and nothing happens.
+
+
