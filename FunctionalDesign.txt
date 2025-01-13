@@ -23,4 +23,15 @@ Make a wordLenCheck() function that checks if the word is too long or too short.
 If it returns true the displayRow() function will be triggered and the turn will count.
 If it returns false it will show a message and nothing happens.
 
+7. When you have 0 attempts you lose the game.
+Make a div with the gameResult id.
+Make a play again button and set it to hidden.
+Make a turnCheck() function. If turn == 5 you will see a game over and the button becomes visible.
+Make a restartGame() function.
+When the button is clicked the game starts over by clearing the boxes 
+and setting all relevant values to "" or 0.
+
+
+
+
 

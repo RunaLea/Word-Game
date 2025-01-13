@@ -49,3 +49,10 @@ input{
     margin: 4px;
     height: 28px;
 }
+#gameResult{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32pt;
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+}

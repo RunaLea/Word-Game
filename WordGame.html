@@ -48,10 +48,13 @@
     </div>
     <br>
     <div>
-        <input type="text" id="Textbox" onkeydown="enterCheck(event)">
+        <input type="text" id="textBox" onkeydown="enterCheck(event)">
         <button onclick="enterWord()" id="enterButton">Enter</button>
     </div>
     <br>
+    <div id="gameResult"></div>
     <div id="textMessage">Try to guess the word in 5 attempts.</div>
+    <br><br>
+    <button onclick="restartGame()" id="restartButton" style="display: none;">Play again</button>
 </body>
 </html>
