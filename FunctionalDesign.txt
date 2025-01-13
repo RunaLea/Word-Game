@@ -8,3 +8,7 @@ Make an Input variable. Log the input.
 3. When you press the enter button the button is pressed.
 Give the button an ID. Add onkeydown to the button to run an enterCheck() function. Make an enterCheck() function.
 Check if the key is Enter, if True -> run enterWord().
+
+4. Add boxes for the letters.
+Make divs for the boxes, give them an outline and a size.
+
