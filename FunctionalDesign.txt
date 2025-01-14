@@ -42,7 +42,8 @@ Make an else if statement in the wordCheck() function. Check if the letter is in
 If this is the case the respective Letterbox becomes yellow.
 
 10. If you guess the right word you win the game.
-
+Make a winCheck() function. Make an if statement in which you compare the correctWordList and the wordChoiceList.
+Show a game over message and show the restart button.
 
 
 

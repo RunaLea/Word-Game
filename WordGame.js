@@ -6,7 +6,7 @@ let correctWordList = [];
 for (let x=0; x<correctWord.length; x++){
     correctWordList.push(correctWord[x]);
 }
-// console.log(correctWordList);
+console.log(correctWordList);
 function enterWord(){
     // Shows the typed word from the textbox in the console.
     wordInput = document.getElementById("textBox").value;
@@ -49,6 +49,7 @@ function displayRow(){
     document.getElementById("letterBox"+(letterBoxCount+4)).innerHTML = wordChoiceList[3];
     document.getElementById("letterBox"+(letterBoxCount+5)).innerHTML = wordChoiceList[4];
     wordCheck();
+    return wordChoiceList;
 }
 function turnCheck(){
     // Checks if the last turn happened and shows the game over message and restart button
@@ -58,6 +59,26 @@ function turnCheck(){
         document.getElementById("restartButton").style.display = "block";
         document.getElementById("textBox").style.display = "none";
         document.getElementById("enterButton").style.display = "none";
+    }
+}
+function winCheck(){
+    console.log("winCheck")
+    // If the correct word is submitted you see the win message and restart button
+    if(correctWord==wordInput){
+        document.getElementById("gameResult").innerHTML = "You won";
+        if(turn == 1){
+            document.getElementById("textMessage").innerHTML = "You guessed the word in a single attempt."
+        }
+        else{
+            document.getElementById("textMessage").innerHTML = `You guessed the word in ${turn} attempts.`
+        }
+        document.getElementById("restartButton").style.display = "block";
+        document.getElementById("textBox").style.display = "none";
+        document.getElementById("enterButton").style.display = "none";
+    }
+    else{
+        letterBoxCount = (letterBoxCount+5);
+        turnCheck();
     }
 }
 function wordCheck(){
@@ -71,13 +92,13 @@ function wordCheck(){
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
         }
+            // Changes the color of correct letters in the wrong position
         else if(correctWordList.includes(wordChoiceList[x])){
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=includeColor;
         }
     }
-    letterBoxCount = (letterBoxCount+5);
-    turnCheck();
+    winCheck()
     return letterBoxCount;
 }
 function restartGame(){
