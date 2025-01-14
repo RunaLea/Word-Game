@@ -1,12 +1,34 @@
 let turn = 0;
-let letterBoxCount = 0
+let letterBoxCount = 0;
 let wordInput = "";
-let correctWord = "words";
-let correctWordList = [];
-for (let x=0; x<correctWord.length; x++){
-    correctWordList.push(correctWord[x]);
+wordFetch();
+let correctWord = pickRandWord();
+let correctWordList = wordSplit();
+function wordFetch(){
+    // Fetches the wordlist
+    fetch("WordList.txt")
+        .then(Response=>Response.text())
+        .then(data=>pickRandWord(data))
+        .catch(error => console.error("Error loading word list:", error));
 }
-console.log(correctWordList);
+function pickRandWord(wordData){
+    // Picks a random word from the wordlist
+    const wordList = wordData.split("\n").map(word=>word.trim());
+    // const wordList = ["green","words","cards","curly"]
+    console.log(wordList)
+    let correctWord = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log("Random word: "+correctWord)
+    return correctWord;
+}
+    function wordSplit(){
+        // Splits the correct word into an array.
+    let correctWordList = [];
+    for (let x=0; x<correctWord.length; x++){
+        correctWordList.push(correctWord[x]);
+    }
+    console.log(correctWordList);
+    return correctWordList;
+}
 function enterWord(){
     // Shows the typed word from the textbox in the console.
     wordInput = document.getElementById("textBox").value;
@@ -116,4 +138,6 @@ function restartGame(){
     document.getElementById("restartButton").style.display = "none";
     document.getElementById("textBox").style.display = "inline-block";
     document.getElementById("enterButton").style.display = "inline-block";
+    correctWord = pickRandWord();
+    correctWordList = wordSplit();
 }

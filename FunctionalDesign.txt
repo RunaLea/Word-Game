@@ -45,7 +45,10 @@ If this is the case the respective Letterbox becomes yellow.
 Make a winCheck() function. Make an if statement in which you compare the correctWordList and the wordChoiceList.
 Show a game over message and show the restart button.
 
-
+11. A word is randomly picked from a file with words.
+Make a txt file with random words.
+Make a wordFetch() function. Use fetch.
+Make a pickRandWord() function. 
 
 
 
