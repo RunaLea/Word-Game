@@ -31,6 +31,16 @@ Make a restartGame() function.
 When the button is clicked the game starts over by clearing the boxes 
 and setting all relevant values to "" or 0.
 
+8. If a letter is right and it is in the right position it becomes green.
+Make a for loop to make an array (correctWordList).
+Make a wordCheck() function. Make a for loop to compare the correctWordList and the wordChoiceList.
+Make an if statement to see if the letter and index match. 
+If this is the case the background in the respective Letterbox becomes green.
+
+9. If a letter is right and it is in the wrong position it becomes yellow.
+
+10. If you guess the right word you win the game.
+
 
 
 

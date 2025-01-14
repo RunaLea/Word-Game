@@ -1,7 +1,12 @@
 let turn = 0;
 let letterBoxCount = 0
 let wordInput = "";
-let correctWord = "_____";
+let correctWord = "words";
+let correctWordList = [];
+for (let x=0; x<correctWord.length; x++){
+    correctWordList.push(correctWord[x]);
+}
+// console.log(correctWordList);
 function enterWord(){
     // Shows the typed word from the textbox in the console.
     wordInput = document.getElementById("textBox").value;
@@ -25,6 +30,7 @@ function wordLenCheck(){
         console.log("Turn: ",turn);
         displayRow();
     }
+    // Shows a message if the word is not the right length
     else if(wordInput.length!=5){
         document.getElementById("textMessage").innerHTML = "The word should be 5 characters.";
     }
@@ -42,11 +48,10 @@ function displayRow(){
     document.getElementById("letterBox"+(letterBoxCount+3)).innerHTML = wordChoiceList[2];
     document.getElementById("letterBox"+(letterBoxCount+4)).innerHTML = wordChoiceList[3];
     document.getElementById("letterBox"+(letterBoxCount+5)).innerHTML = wordChoiceList[4];
-    letterBoxCount = (letterBoxCount+5);
-    turnCheck();
-    return letterBoxCount;
+    wordCheck();
 }
 function turnCheck(){
+    // Checks if the last turn happened and shows the game over message and restart button
     if(turn==5){
         document.getElementById("gameResult").innerHTML = "You lost";
         document.getElementById("textMessage").innerHTML = `The word was: ${correctWord.toUpperCase()}.`
@@ -54,6 +59,21 @@ function turnCheck(){
         document.getElementById("textBox").style.display = "none";
         document.getElementById("enterButton").style.display = "none";
     }
+}
+function wordCheck(){
+    var correctColor = "rgb(47, 255, 57)"
+    // Checks per letter if the correct word is the same as the chosen word
+    for(let x=0; x<wordChoiceList.length; x++){
+        if(wordChoiceList[x]==correctWordList[x]){
+            console.log("Correct letter: "+x);
+            // Changes the color of the correct letters
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
+        }
+    }
+    letterBoxCount = (letterBoxCount+5);
+    turnCheck();
+    return letterBoxCount;
 }
 function restartGame(){
     turn = 0
