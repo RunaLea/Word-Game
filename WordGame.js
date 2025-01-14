@@ -62,6 +62,7 @@ function turnCheck(){
 }
 function wordCheck(){
     var correctColor = "rgb(47, 255, 57)"
+    var includeColor = "rgb(241, 255, 50)"
     // Checks per letter if the correct word is the same as the chosen word
     for(let x=0; x<wordChoiceList.length; x++){
         if(wordChoiceList[x]==correctWordList[x]){
@@ -70,16 +71,24 @@ function wordCheck(){
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
         }
+        else if(correctWordList.includes(wordChoiceList[x])){
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=includeColor;
+        }
     }
     letterBoxCount = (letterBoxCount+5);
     turnCheck();
     return letterBoxCount;
 }
 function restartGame(){
+    // Changes elements so the game is back to it's initial state
+    var startColor = "rgb(255, 255, 255)";
     turn = 0
     letterBoxCount = 0
     for (let x=0; x<25; x++){
         document.getElementById("letterBox"+(x+1)).innerHTML = "";
+        document.getElementById("letterBox"+(x+1)).style.color = startColor;
+        document.getElementById("letterBox"+(x+1)).style.borderColor = startColor;
     }
     document.getElementById("gameResult").innerHTML = "";
     document.getElementById("textMessage").innerHTML = "Try to guess the word in 5 attempts.";

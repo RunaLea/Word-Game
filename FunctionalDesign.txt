@@ -35,11 +35,15 @@ and setting all relevant values to "" or 0.
 Make a for loop to make an array (correctWordList).
 Make a wordCheck() function. Make a for loop to compare the correctWordList and the wordChoiceList.
 Make an if statement to see if the letter and index match. 
-If this is the case the background in the respective Letterbox becomes green.
+If this is the case the respective Letterbox becomes green.
 
 9. If a letter is right and it is in the wrong position it becomes yellow.
+Make an else if statement in the wordCheck() function. Check if the letter is in the correctWordList.
+If this is the case the respective Letterbox becomes yellow.
 
 10. If you guess the right word you win the game.
+
+
 
 
 
