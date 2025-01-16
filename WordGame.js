@@ -4,6 +4,7 @@ let wordInput = "";
 let correctWordList = [];
 wordFetch();
 let correctWord;
+// wordSplit();
 function wordFetch(){
     // Fetches the wordlist
     fetch("WordList.txt")
@@ -102,25 +103,67 @@ function winCheck(){
     }
 }
 function wordCheck(){
-    var correctColor = "rgb(47, 255, 57)"
-    var includeColor = "rgb(241, 255, 50)"
+    let letterSkip = [];
     // Checks per letter if the correct word is the same as the chosen word
     for(let x=0; x<wordChoiceList.length; x++){
-        if(wordChoiceList[x]==correctWordList[x]){
-            console.log("Correct letter: "+x);
-            // Changes the color of the correct letters
-            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
-            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
-        }
-            // Changes the color of correct letters in the wrong position
-        else if(correctWordList.includes(wordChoiceList[x])){
-            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
-            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=includeColor;
-        }
+        letterCheck(x,letterSkip);
     }
     winCheck()
     return letterBoxCount;
 }
+function letterCheck(x,letterSkip){
+    var correctColor = "rgb(47, 255, 57)"
+    var includeColor = "rgb(241, 255, 50)"
+    if(wordChoiceList.indexOf(wordChoiceList[x])!=wordChoiceList.lastIndexOf(wordChoiceList[x])){
+        // if there's multiple letters
+        console.log(`${x} has multiple letters`)
+        if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(correctWordList[x])!=correctWordList.lastIndexOf(correctWordList[x])){
+            // Changes the color of the right letters in the wrong place if there's multiple right letters
+            console.log("there are multiple right letters")
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=includeColor;
+            if(wordChoiceList[x]==correctWordList[x]){
+                // Changes the color of the correct letter
+                console.log("Correct letter: "+x);
+                document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
+                document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
+            }
+        } 
+        else if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(correctWordList[x])==correctWordList.lastIndexOf(correctWordList[x])){
+            // Changes the color of the first right letter in the wrong place if there's only 1 right letter
+            console.log("There's only 1 right letter")
+            if(letterSkip.includes(wordChoiceList[x])){
+                console.log(`The ${letterSkip} is skipped`);
+                return;
+            }
+            letterSkip.push(wordChoiceList[x]);
+            let firstCorrect = wordChoiceList.indexOf(wordChoiceList[x]);
+            document.getElementById("letterBox"+(firstCorrect+letterBoxCount+1)).style.color=includeColor;
+            document.getElementById("letterBox"+(firstCorrect+letterBoxCount+1)).style.borderColor=includeColor;
+            if(wordChoiceList[x]==correctWordList[x]){
+                // Changes the color of the correct letter
+                console.log("Correct letter: "+x);
+                document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
+                document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
+            }
+        }
+    }
+    else if(wordChoiceList.indexOf(wordChoiceList[x])==wordChoiceList.lastIndexOf(wordChoiceList[x])){
+        console.log("There are no multiple letters")
+        // if there are no multiple letters
+        if(wordChoiceList[x]==correctWordList[x]){
+            // Changes the color of the correct letter
+            console.log("Correct letter: "+x);
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=correctColor;
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
+        }
+        else if(correctWordList.includes(wordChoiceList[x])&&wordChoiceList[x]!=correctWordList[x]){
+            // Changes the color of the right letter in the wrong place
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
+            document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=includeColor;
+        }
+    }
+} 
 function restartGame(){
     // Changes elements so the game is back to it's initial state
     var startColor = "rgb(255, 255, 255)";
@@ -136,6 +179,6 @@ function restartGame(){
     document.getElementById("restartButton").style.display = "none";
     document.getElementById("textBox").style.display = "inline-block";
     document.getElementById("enterButton").style.display = "inline-block";
-    correctWord = pickRandWord();
-    correctWordList = wordSplit();
+    correctWordList = [];
+    wordFetch();
 }

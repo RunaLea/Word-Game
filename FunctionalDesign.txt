@@ -50,6 +50,11 @@ Make a txt file with random words.
 Make a wordFetch() function. Use fetch.
 Make a pickRandWord() function. 
 
+12. If there are multiple right letters in the chosen word, it should only highlight one.
+Change the wordCheck() function by adding an if statement to check if there are multiple letters.
+
+13. Bug fixes for multiple input.
+Use log and if statements to finetune all possibilities.
 
 
 
