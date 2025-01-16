@@ -1,9 +1,9 @@
 let turn = 0;
 let letterBoxCount = 0;
 let wordInput = "";
+let correctWordList = [];
 wordFetch();
-let correctWord = pickRandWord();
-let correctWordList = wordSplit();
+let correctWord;
 function wordFetch(){
     // Fetches the wordlist
     fetch("WordList.txt")
@@ -11,18 +11,16 @@ function wordFetch(){
         .then(data=>pickRandWord(data))
         .catch(error => console.error("Error loading word list:", error));
 }
-function pickRandWord(wordData){
+function pickRandWord(data){
     // Picks a random word from the wordlist
-    const wordList = wordData.split("\n").map(word=>word.trim());
-    // const wordList = ["green","words","cards","curly"]
-    console.log(wordList)
-    let correctWord = wordList[Math.floor(Math.random() * wordList.length)];
+    const wordList = data.split("\n").map(word=>word.trim());
+    let randWord = wordList[Math.floor(Math.random() * wordList.length)];
+    correctWord = randWord;
     console.log("Random word: "+correctWord)
-    return correctWord;
+    wordSplit();
 }
     function wordSplit(){
         // Splits the correct word into an array.
-    let correctWordList = [];
     for (let x=0; x<correctWord.length; x++){
         correctWordList.push(correctWord[x]);
     }
