@@ -4,7 +4,8 @@ let wordInput = "";
 let correctWordList = [];
 wordFetch();
 let correctWord;
-// wordSplit();
+// Below (line 8) is for bugfixing:
+// wordSplit(); 
 function wordFetch(){
     // Fetches the wordlist
     fetch("WordList.txt")
@@ -117,7 +118,7 @@ function letterCheck(x,letterSkip){
     if(wordChoiceList.indexOf(wordChoiceList[x])!=wordChoiceList.lastIndexOf(wordChoiceList[x])){
         // if there's multiple letters
         console.log(`${x} has multiple letters`)
-        if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(correctWordList[x])!=correctWordList.lastIndexOf(correctWordList[x])){
+        if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(wordChoiceList[x])!=correctWordList.lastIndexOf(wordChoiceList[x])){
             // Changes the color of the right letters in the wrong place if there's multiple right letters
             console.log("there are multiple right letters")
             document.getElementById("letterBox"+(x+letterBoxCount+1)).style.color=includeColor;
@@ -129,7 +130,7 @@ function letterCheck(x,letterSkip){
                 document.getElementById("letterBox"+(x+letterBoxCount+1)).style.borderColor=correctColor;
             }
         } 
-        else if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(correctWordList[x])==correctWordList.lastIndexOf(correctWordList[x])){
+        else if(correctWordList.includes(wordChoiceList[x])&&correctWordList.indexOf(wordChoiceList[x])==correctWordList.lastIndexOf(wordChoiceList[x])){
             // Changes the color of the first right letter in the wrong place if there's only 1 right letter
             console.log("There's only 1 right letter")
             if(letterSkip.includes(wordChoiceList[x])){
